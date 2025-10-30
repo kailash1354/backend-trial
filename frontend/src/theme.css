@@ -1,0 +1,199 @@
+/* src/theme.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --- Root & Dark Mode Variables (Keep as is) --- */
+:root {
+  --bg: 248 247 243; --surface: 255 255 255; --text: 28 28 28;
+  --muted: 75 75 75; --accent: 191 167 111; --accent-2: 150 116 58;
+  --border: 229 227 221; --card: 255 253 249; --highlight: 245 242 237;
+  --shadow: 0 0 0 / 0.06; --shadow-lg: 0 10px 30px rgba(var(--shadow), 1);
+  --btn-text: 255 255 255; --logo-text-secondary: var(--accent);
+  --placeholder-text: 150 150 150;
+}
+.dark {
+  --bg: 30 30 30; --surface: 45 45 45; --text: 235 235 235;
+  --muted: 150 150 150; /* Reverted to slightly lighter grey */
+  --accent: 214 181 92; --accent-2: 191 167 111;
+  --border: 55 55 55; --card: 40 40 40; --highlight: 55 55 55;
+  --shadow: 0 0 0 / 0.2; --shadow-lg: 0 12px 35px rgba(var(--shadow), 1);
+  --btn-text: 28 28 28; --logo-text-secondary: var(--accent);
+  --placeholder-text: 100 100 100;
+}
+
+/* --- Base Styles (Keep as is) --- */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+body, #root, .App { font-family: 'Inter', system-ui, sans-serif; background-color: rgb(var(--bg)) !important; color: rgb(var(--text)) !important; min-height: 100vh; font-weight: 400; }
+h1, h2, h3, h4, h5, h6, .heading, .hero-title, .font-display { font-family: 'Playfair Display', serif; color: rgb(var(--text)) !important; font-weight: 700; letter-spacing: -0.01em; }
+p, span, li, label, div, section, legend { font-family: inherit; color: rgb(var(--text)) !important; line-height: 1.6; }
+button, input, textarea, select { font-family: inherit; color: rgb(var(--text)) !important; }
+a { color: rgb(var(--accent)) !important; text-decoration: none !important; transition: color 0.2s ease; }
+a:hover { color: rgb(var(--accent-2)) !important; }
+
+/* --- Buttons (Keep as is) --- */
+button, .btn, .btn-primary, .button-primary, .btn-luxury-primary { background-color: rgb(var(--accent)) !important; color: rgb(var(--btn-text)) !important; border: 1px solid rgb(var(--accent-2)) !important; border-radius: 8px !important; box-shadow: 0 6px 15px rgba(var(--shadow), 1) !important; font-weight: 600 !important; padding: 0.75rem 1.5rem !important; transition: all 0.2s ease !important; }
+button:hover, .btn:hover, .button-primary:hover, .btn-luxury-primary:hover { background-color: rgb(var(--accent-2)) !important; border-color: rgb(var(--accent-2)) !important; box-shadow: 0 8px 20px rgba(var(--shadow), 1) !important; transform: translateY(-2px); color: rgb(var(--btn-text)) !important; }
+button:disabled, .btn:disabled, .btn-luxury-primary:disabled { background-color: rgba(var(--accent), 0.6) !important; border-color: rgba(var(--accent-2), 0.5) !important; cursor: not-allowed !important; box-shadow: none !important; transform: none !important; color: rgba(var(--btn-text), 0.7) !important; }
+.btn-outline, .button-outline, .btn-luxury-secondary { background: transparent !important; color: rgb(var(--accent)) !important; border: 2px solid rgb(var(--accent)) !important; box-shadow: none !important; padding: calc(0.75rem - 1px) calc(1.5rem - 1px) !important; font-weight: 600 !important; }
+.btn-outline:hover, .button-outline:hover, .btn-luxury-secondary:hover { background-color: rgba(var(--accent), 0.08) !important; color: rgb(var(--accent-2)) !important; border-color: rgb(var(--accent-2)) !important; transform: none; box-shadow: none !important; }
+
+/* --- Inputs & Placeholders (Keep as is) --- */
+input, textarea, select, .input, .input-luxury { background-color: rgb(var(--surface)) !important; border: 1px solid rgb(var(--border)) !important; color: rgb(var(--text)) !important; border-radius: 8px !important; box-shadow: none !important; padding: 0.75rem 1rem !important; line-height: 1.5 !important; font-size: 1rem !important; }
+.input-luxury.pl-12 { padding-left: 3rem !important; } .input-luxury.pr-12 { padding-right: 3rem !important; }
+input::placeholder, textarea::placeholder { color: rgba(var(--placeholder-text), 1) !important; opacity: 1 !important; }
+input:focus, textarea:focus, select:focus, .input:focus, .input-luxury:focus { outline: none !important; border-color: rgb(var(--accent)) !important; box-shadow: 0 0 0 3px rgba(var(--accent), 0.2) !important; }
+
+/* --- Range Sliders (Keep as is) --- */
+input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: rgb(var(--border)); border-radius: 2px; cursor: pointer; outline: none; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; background: rgb(var(--accent)); border-radius: 50%; border: none; transition: background-color 0.2s ease; }
+input[type="range"]::-webkit-slider-thumb:hover { background: rgb(var(--accent-2)); }
+input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; background: rgb(var(--accent)); border-radius: 50%; border: none; cursor: pointer; transition: background-color 0.2s ease; }
+input[type="range"]::-moz-range-thumb:hover { background: rgb(var(--accent-2)); }
+input[type="range"].accent-accent { accent-color: initial; }
+
+/* --- Cards (Keep as is) --- */
+.card, .product-card, .surface, .sheet, .card-luxury { background-color: rgb(var(--card)) !important; border: 1px solid rgb(var(--border)) !important; box-shadow: var(--shadow-lg) !important; border-radius: 12px !important; color: rgb(var(--text)) !important; }
+
+/* --- Header & Footer (Keep as is) --- */
+header, nav, .navbar, .site-header { background-color: rgba(var(--bg), 0.9) !important; backdrop-filter: blur(12px) saturate(180%); -webkit-backdrop-filter: blur(12px) saturate(180%); color: rgb(var(--text)) !important; border-bottom: 1px solid rgba(var(--border), 0.7) !important; box-shadow: 0 1px 4px rgba(var(--shadow), 1.5) !important; transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+.dark header, .dark nav, .dark .navbar, .dark .site-header { border-bottom: 1px solid rgba(var(--border), 0.5) !important; }
+footer, .site-footer { background-color: rgb(var(--bg)) !important; color: rgb(var(--muted)) !important; border-top: 1px solid rgb(var(--border)) !important; }
+.dark footer, .dark .site-footer { background-color: rgb(var(--surface)) !important; }
+
+/* --- Utilities & Overrides (Keep as is) --- */
+.text-primary { color: rgb(var(--text)) !important; } .text-muted { color: rgb(var(--muted)) !important; } .text-accent { color: rgb(var(--accent)) !important; } .text-white { color: white !important; } .dark .text-white { color: white !important; } .dark .text-black { color: black !important; }
+.bg-primary { background-color: rgb(var(--bg)) !important; } .bg-surface { background-color: rgb(var(--surface)) !important; } .bg-card { background-color: rgb(var(--card)) !important; } .bg-accent { background-color: rgb(var(--accent)) !important; } .bg-highlight { background-color: rgb(var(--highlight)) !important; } .bg-black { background-color: #000 !important; } .dark .bg-black { background-color: #000 !important; } .bg-white { background-color: #FFF !important; } .dark .bg-white { background-color: #FFF !important; }
+body [class*="bg-gray-8"], body [class*="bg-gray-9"], body [class*="bg-slate-8"], body [class*="bg-slate-9"], body [class*="bg-zinc-8"], body [class*="bg-zinc-9"], body [class*="bg-neutral-8"], body [class*="bg-neutral-9"], body [class*="bg-stone-8"], body [class*="bg-stone-9"], body [class*="bg-[#0"], body [class*="bg-[#1"] { background-color: rgb(var(--bg)) !important; color: rgb(var(--text)) !important; }
+body [class*="bg-[#0f1724"] { background-color: rgb(var(--bg)) !important; }
+[style*="background:#0f1724"], [style*="background: #0f1724"], [style*="background-color:#0f1724"], [style*="background-color: #0f1724"] { background-color: rgb(var(--bg)) !important; }
+
+/* --- Focus States --- */
+*:focus { outline: none; }
+/* General focus styles (ring) */
+*:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(var(--accent), 0.2);
+  border-radius: 4px;
+}
+/* REMOVED specific header button background on focus */
+/* header button:focus-visible, header a:focus-visible { background-color: rgb(var(--highlight)); color: rgb(var(--accent)); } */
+
+/* Ensure the minimal theme toggle button STILL gets a focus ring */
+header button:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(var(--accent), 0.2);
+  /* Make sure text color changes on focus for icon-only buttons */
+  color: rgb(var(--accent)) !important;
+}
+
+/* Ensure NavLink focus uses ring only */
+header nav a:focus-visible {
+   outline: 2px solid rgb(var(--accent));
+   outline-offset: 4px; /* Adjust offset for underline */
+   box-shadow: none; /* Remove inner shadow */
+   border-radius: 2px;
+}
+
+
+.sidebar-active-gradient {
+  background-image: linear-gradient(to right, rgba(var(--accent), 1) 0%, rgba(var(--accent-2), 1) 100%);
+  /* Ensure text color contrasts well */
+  color: rgb(var(--btn-text)) !important;
+}
+
+/* ============================================= */
+/* 7. Admin Panel Specific Styles              */
+/* ============================================= */
+@layer components {
+  /* Admin Panel specific fonts */
+  .admin-layout h1, .admin-layout h2, .admin-layout h3, .admin-layout h4,
+  .admin-card h1, .admin-card h2, .admin-card h3, .admin-card h4 {
+     font-family: 'Inter', system-ui, sans-serif !important;
+     font-weight: 600 !important;
+     color: rgb(var(--text)) !important;
+  }
+
+  /* Admin Panel Card Style */
+  .admin-card {
+    background-color: rgb(var(--surface)) !important;
+    border: 1px solid rgb(var(--border)) !important;
+    box-shadow: 0 1px 3px rgba(var(--shadow), 2) !important;
+    border-radius: 8px !important;
+    color: inherit;
+  }
+
+  /* Admin Accent Colors (Amber/Orange) */
+  :root {
+    --admin-accent: 217 119 6;      /* #D97706 - amber-600 */
+    --admin-accent-2: 180 83 9;     /* #B45309 - amber-700 */
+    --admin-btn-text: 255 255 255;  /* White */
+  }
+  .dark {
+    --admin-accent: 251 146 60; /* Amber-400 */
+    --admin-accent-2: 245 158 11; /* Amber-500 */
+    --admin-btn-text: 41 41 41;   /* Dark text */
+  }
+
+  /* Admin Primary Button (Amber/Orange) */
+  .btn-admin-primary {
+    background-color: rgb(var(--admin-accent)) !important;
+    color: rgb(var(--admin-btn-text)) !important;
+    border: 1px solid transparent !important;
+    border-radius: 6px !important;
+    box-shadow: 0 1px 2px rgba(var(--shadow), 3) !important;
+    font-weight: 500 !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s ease !important;
+  }
+  .btn-admin-primary:hover {
+    background-color: rgb(var(--admin-accent-2)) !important;
+    box-shadow: 0 2px 4px rgba(var(--shadow), 4) !important;
+    transform: none !important;
+    color: rgb(var(--admin-btn-text)) !important;
+  }
+
+  /* Admin Sidebar Active State */
+  .sidebar-active {
+    background-color: rgb(var(--highlight)) !important;
+    color: rgb(var(--admin-accent)) !important; /* Use Admin accent color */
+    font-weight: 600;
+  }
+  .sidebar-active svg {
+    color: rgb(var(--admin-accent)) !important; /* Use Admin accent color */
+  }
+  .dark .sidebar-active {
+    background-color: rgb(var(--admin-accent)) !important;
+    color: rgb(var(--admin-btn-text)) !important;
+  }
+  .dark .sidebar-active svg {
+    color: rgb(var(--admin-btn-text)) !important;
+  }
+  
+  /* Chart Colors - Light Mode (Vibrant Palette) */
+  :root {
+    --chart-color-1: 150 116 58; /* accent-2 */
+    --chart-color-2: 59 130 246; /* Blue-500 */
+    --chart-color-3: 139 92 246; /* Violet-500 */
+    --chart-color-4: 236 72 153; /* Pink-500 */
+    --chart-color-5: 16 185 129; /* Emerald-500 */
+    --chart-grid: 229 231 235; /* gray-200 */
+    
+    /* Semantic Colors (for status badges etc.) */
+    --success: 22 163 74;    /* green-600 */
+    --warning: 245 158 11;   /* amber-500 */
+    --info: 59 130 246;     /* blue-500 */
+    --error: 220 38 38;     /* red-600 */
+  }
+
+  /* Chart Colors - Dark Mode */
+  .dark {
+    --chart-color-1: 252 211 77; --chart-color-2: 96 165 250; --chart-color-3: 167 139 250;
+    --chart-color-4: 244 114 182;--chart-color-5: 52 211 153; --chart-grid: 70 70 70;
+  
+    /* Semantic Colors (Lighter) */
+    --success: 74 222 128; --warning: 251 191 36; --info: 96 165 250; --error: 248 113 113;
+  }
+}
+

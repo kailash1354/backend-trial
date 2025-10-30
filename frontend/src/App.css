@@ -1,0 +1,301 @@
+@import "tailwindcss";
+
+@layer utilities {
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+
+  .spinner-luxury {
+    border: 3px solid rgba(var(--accent), 0.3);
+    border-top: 3px solid rgb(var(--accent));
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  .fade-in { animation: fadeIn 0.3s ease-in-out; }
+  .slide-in { animation: slideIn 0.3s ease-out; }
+
+  .skeleton {
+    background: linear-gradient(90deg, rgba(var(--border), 0.5) 25%, rgba(var(--border), 0.8) 50%, rgba(var(--border), 0.5) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  .dark .skeleton {
+     background: linear-gradient(90deg, rgba(var(--border), 0.2) 25%, rgba(var(--border), 0.4) 50%, rgba(var(--border), 0.2) 75%);
+     background-size: 200% 100%;
+  }
+  @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+}
+
+@layer components {
+  .error-boundary { padding: 2rem; text-align: center; background-color: #fee; border: 1px solid #fcc; border-radius: 0.5rem; margin: 1rem; color: #a00; }
+  .dark .error-boundary { background-color: #3a1f1f; border-color: #5a2f2f; color: #fcc; }
+  .success-message { padding: 1rem; background-color: #efe; border: 1px solid #cfc; border-radius: 0.5rem; color: #2d5a2d; }
+  .dark .success-message { background-color: #1f3a1f; border-color: #2f5a2f; color: #cfc; }
+
+  .bg-luxury-gradient {
+     background: linear-gradient(135deg, rgba(var(--bg),1) 0%, rgba(var(--bg),0.9) 100%); /* Subtle gradient */
+  }
+  .dark .bg-luxury-gradient {
+     background: linear-gradient(135deg, rgba(var(--bg),1) 0%, rgba(var(--bg),0.95) 100%);
+  }
+
+  .card-luxury {
+    background-color: rgb(var(--card));
+    border: 1px solid rgb(var(--border));
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(var(--shadow), 1); /* Use var(--shadow) directly */
+    overflow: hidden;
+  }
+
+  .input-luxury {
+    position: relative; /* Needed for absolute icon positioning */
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 3rem; /* Adjusted padding */
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgb(var(--text));
+    background-color: rgb(var(--surface));
+    border: 1px solid rgb(var(--border));
+    border-radius: 10px;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    appearance: none;
+  }
+  .input-luxury.pr-12 { padding-right: 3.5rem !important; } /* Ensure padding for eye icon */
+
+  .input-luxury::placeholder {
+    color: rgba(var(--muted), 0.8); /* Slightly less muted placeholder */
+    opacity: 1;
+  }
+  .input-luxury:focus {
+    outline: none;
+    border-color: rgb(var(--accent));
+    box-shadow: 0 0 0 3px rgba(var(--accent), 0.2);
+  }
+  /* Style for icon wrapper inside input */
+  .input-icon-wrapper {
+    position: absolute;
+    left: 1rem; /* Position icon */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Make icon non-interactive */
+    color: rgb(var(--muted));
+  }
+  /* Style for action button inside input (e.g., eye icon) */
+  .input-action-button {
+     position: absolute;
+     right: 1rem; /* Position button */
+     top: 50%;
+     transform: translateY(-50%);
+     color: rgb(var(--muted));
+     cursor: pointer;
+     transition: color 0.2s ease;
+  }
+  .input-action-button:hover {
+     color: rgb(var(--accent));
+  }
+
+
+  .btn-luxury {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.75rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(var(--shadow), 1);
+    border: 1px solid transparent;
+  }
+
+  .btn-luxury-primary {
+    background-color: rgb(var(--accent));
+    color: rgb(var(--btn-text));
+    border-color: rgba(var(--accent-2), 0.95);
+  }
+  .btn-luxury-primary:hover {
+    background-color: rgb(var(--accent-2));
+    box-shadow: 0 6px 20px rgba(var(--shadow), 1.5); /* Slightly stronger shadow on hover */
+    transform: translateY(-2px);
+  }
+  .btn-luxury-primary:disabled {
+    background-color: rgba(var(--accent), 0.6);
+    border-color: rgba(var(--accent-2), 0.5);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    opacity: 0.7;
+    color: rgba(var(--btn-text), 0.7);
+  }
+
+  .btn-luxury-secondary {
+    background-color: rgb(var(--surface));
+    color: rgb(var(--accent));
+    border: 2px solid rgb(var(--accent));
+    padding: calc(0.875rem - 1px) calc(1.75rem - 1px); /* Adjust padding for border */
+  }
+  .btn-luxury-secondary:hover {
+    background-color: rgba(var(--accent), 0.08);
+    border-color: rgb(var(--accent-2));
+    color: rgb(var(--accent-2));
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(var(--shadow), 0.5); /* Subtle shadow */
+  }
+
+  .text-luxury-gold { color: rgb(var(--accent)); }
+  .hover\:text-yellow-600:hover { color: rgb(var(--accent-2)) !important; }
+
+  .spinner-luxury { border: 3px solid rgba(var(--accent), 0.3); border-top: 3px solid rgb(var(--accent)); border-radius: 50%; animation: spin 1s linear infinite; }
+
+  .product-grid-luxury { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 2rem; }
+  @media (min-width: 640px) { .product-grid-luxury { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .product-grid-luxury { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  *:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; box-shadow: 0 0 0 4px rgba(var(--accent), 0.2); }
+  input:focus-visible, textarea:focus-visible, select:focus-visible { border-color: rgb(var(--accent)); box-shadow: 0 0 0 3px rgba(var(--accent), 0.2); }
+}@import "tailwindcss";
+
+@layer utilities {
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+
+  .spinner-luxury { border: 3px solid rgba(var(--accent), 0.3); border-top: 3px solid rgb(var(--accent)); border-radius: 50%; animation: spin 1s linear infinite; }
+  .fade-in { animation: fadeIn 0.3s ease-in-out; }
+  .slide-in { animation: slideIn 0.3s ease-out; }
+
+  .skeleton { background: linear-gradient(90deg, rgba(var(--border), 0.5) 25%, rgba(var(--border), 0.8) 50%, rgba(var(--border), 0.5) 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+  .dark .skeleton { background: linear-gradient(90deg, rgba(var(--border), 0.2) 25%, rgba(var(--border), 0.4) 50%, rgba(var(--border), 0.2) 75%); background-size: 200% 100%; }
+  @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* Two-tone Logo Text */
+  .logo-secondary {
+    color: rgb(var(--logo-text-secondary)); /* Use variable from theme.css */
+  }
+}
+
+@layer components {
+  /* Error/Success Messages (Unchanged) */
+  .error-boundary { padding: 2rem; text-align: center; background-color: #fee; border: 1px solid #fcc; border-radius: 0.5rem; margin: 1rem; color: #a00; }
+  .dark .error-boundary { background-color: #3a1f1f; border-color: #5a2f2f; color: #fcc; }
+  .success-message { padding: 1rem; background-color: #efe; border: 1px solid #cfc; border-radius: 0.5rem; color: #2d5a2d; }
+  .dark .success-message { background-color: #1f3a1f; border-color: #2f5a2f; color: #cfc; }
+
+  /* Gradient Background (Unchanged) */
+  .bg-luxury-gradient { background: linear-gradient(135deg, rgba(var(--bg),1) 0%, rgba(var(--bg),0.9) 100%); }
+  .dark .bg-luxury-gradient { background: linear-gradient(135deg, rgba(var(--bg),1) 0%, rgba(var(--bg),0.95) 100%); }
+
+  /* Luxury Card (Unchanged) */
+  .card-luxury { background-color: rgb(var(--card)); border: 1px solid rgb(var(--border)); border-radius: 16px; box-shadow: 0 15px 35px rgba(var(--shadow), 1); overflow: hidden; }
+
+  /* Luxury Input (Unchanged) */
+  .input-luxury { position: relative; display: block; width: 100%; padding: 0.875rem 1rem 0.875rem 3rem; font-size: 1rem; line-height: 1.5; color: rgb(var(--text)); background-color: rgb(var(--surface)); border: 1px solid rgb(var(--border)); border-radius: 10px; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; appearance: none; }
+  .input-luxury.pr-12 { padding-right: 3.5rem !important; }
+  .input-luxury::placeholder { color: rgba(var(--muted), 0.8); opacity: 1; }
+  .input-luxury:focus { outline: none; border-color: rgb(var(--accent)); box-shadow: 0 0 0 3px rgba(var(--accent), 0.2); }
+  .input-icon-wrapper { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); pointer-events: none; color: rgb(var(--muted)); }
+  .input-action-button { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: rgb(var(--muted)); cursor: pointer; transition: color 0.2s ease; }
+  .input-action-button:hover { color: rgb(var(--accent)); }
+
+  /* Luxury Buttons (Unchanged) */
+  .btn-luxury { display: inline-flex; align-items: center; justify-content: center; padding: 0.875rem 1.75rem; font-weight: 600; border-radius: 10px; cursor: pointer; font-size: 1rem; line-height: 1.5; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(var(--shadow), 1); border: 1px solid transparent; }
+  .btn-luxury-primary { background-color: rgb(var(--accent)); color: rgb(var(--btn-text)); border-color: rgba(var(--accent-2), 0.95); }
+  .btn-luxury-primary:hover { background-color: rgb(var(--accent-2)); box-shadow: 0 6px 20px rgba(var(--shadow), 1.5); transform: translateY(-2px); }
+  .btn-luxury-primary:disabled { background-color: rgba(var(--accent), 0.6); border-color: rgba(var(--accent-2), 0.5); cursor: not-allowed; box-shadow: none; transform: none; opacity: 0.7; color: rgba(var(--btn-text), 0.7); }
+  .btn-luxury-secondary { background-color: rgb(var(--surface)); color: rgb(var(--accent)); border: 2px solid rgb(var(--accent)); padding: calc(0.875rem - 1px) calc(1.75rem - 1px); }
+  .btn-luxury-secondary:hover { background-color: rgba(var(--accent), 0.08); border-color: rgb(var(--accent-2)); color: rgb(var(--accent-2)); transform: translateY(-1px); box-shadow: 0 2px 10px rgba(var(--shadow), 0.5); }
+
+  /* Utilities (Unchanged) */
+  .text-luxury-gold { color: rgb(var(--accent)); }
+  .hover\:text-yellow-600:hover { color: rgb(var(--accent-2)) !important; }
+  .spinner-luxury { border: 3px solid rgba(var(--accent), 0.3); border-top: 3px solid rgb(var(--accent)); border-radius: 50%; animation: spin 1s linear infinite; }
+
+  /* Product Grid (Unchanged) */
+  .product-grid-luxury { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 2rem; }
+  @media (min-width: 640px) { .product-grid-luxury { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .product-grid-luxury { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  /* Focus Styles (Unchanged) */
+  *:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; box-shadow: 0 0 0 4px rgba(var(--accent), 0.2); }
+  input:focus-visible, textarea:focus-visible, select:focus-visible { border-color: rgb(var(--accent)); box-shadow: 0 0 0 3px rgba(var(--accent), 0.2); }
+}
+
+
+
+/* ============================================= */
+/* 7. Admin Panel Specific Styles (Using Gold Theme) */
+/* ============================================= */
+@layer components {
+  /* Admin Panel specific fonts */
+  .admin-layout h1, .admin-layout h2, .admin-layout h3, .admin-layout h4,
+  .admin-card h1, .admin-card h2, .admin-card h3, .admin-card h4 {
+     font-family: 'Inter', system-ui, sans-serif !important;
+     font-weight: 600 !important;
+     color: rgb(var(--text)) !important;
+  }
+
+  /* Admin Panel Card Style (uses main site surface/border) */
+  .admin-card, .admin-layout .MuiPaper-root {
+    background-color: rgb(var(--surface)) !important;
+    border: 1px solid rgb(var(--border)) !important;
+    box-shadow: 0 1px 3px rgba(var(--shadow), 2) !important;
+    border-radius: 8px !important;
+    color: inherit;
+  }
+  .dark .admin-card, .dark .admin-layout .MuiPaper-root {
+    background-color: rgb(var(--card)) !important; /* Use dark card bg */
+  }
+
+  /* Admin Buttons will use .btn-luxury-primary (main gold) */
+  /* and .btn-luxury-secondary (main secondary) */
+
+  /* Admin Sidebar Active State (Gold) */
+  .sidebar-active {
+    background-color: rgb(var(--highlight)) !important;
+    color: rgb(var(--accent)) !important; /* Use main accent color */
+    font-weight: 600;
+  }
+  .sidebar-active svg {
+    color: rgb(var(--accent)) !important; /* Use main accent color */
+  }
+  .dark .sidebar-active {
+    background-color: rgb(var(--accent)) !important;
+    color: rgb(var(--btn-text)) !important; /* Use dark btn-text */
+  }
+  .dark .sidebar-active svg {
+    color: rgb(var(--btn-text)) !important; /* Use dark btn-text */
+  }
+  
+  /* Chart Colors - Light Mode (Vibrant Palette) */
+  :root {
+    --chart-color-1: 150 116 58; /* accent-2 */
+    --chart-color-2: 59 130 246; /* Blue-500 */
+    --chart-color-3: 139 92 246; /* Violet-500 */
+    --chart-color-4: 236 72 153; /* Pink-500 */
+    --chart-color-5: 16 185 129; /* Emerald-500 */
+    --chart-grid: 229 231 235; /* gray-200 */
+    
+    /* Semantic Colors (for status badges etc.) */
+    --success: 22 163 74;    /* green-600 */
+    --warning: 245 158 11;   /* amber-500 */
+    --info: 59 130 246;     /* blue-500 */
+    --error: 220 38 38;     /* red-600 */
+  }
+
+  /* Chart Colors - Dark Mode */
+  .dark {
+    --chart-color-1: 214 181 92; /* accent */
+    --chart-color-2: 96 165 250; /* Blue-400 */
+    --chart-color-3: 167 139 250;/* Violet-400 */
+    --chart-color-4: 244 114 182;/* Pink-400 */
+    --chart-color-5: 52 211 153; /* Emerald-400 */
+    --chart-grid: 70 70 70;
+  
+    /* Semantic Colors (Lighter) */
+    --success: 74 222 128; --warning: 251 191 36; --info: 96 165 250; --error: 248 113 113;
+  }
+}
