@@ -16,3 +16,4 @@ logs
 
 # Editor / OS files
 .DS_Store
+.vercel
