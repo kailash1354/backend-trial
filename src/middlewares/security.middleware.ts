@@ -1,10 +1,13 @@
 import cors from "cors";
-import helmet from "helmet";
-import rateLimit from "express-rate-limit";
 import mongoSanitize from "express-mongo-sanitize";
 import compression from "compression";
+import { createRequire } from "node:module";
 import type { Express } from "express";
 import { env } from "../config/env.js";
+
+const require = createRequire(import.meta.url);
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
 export function applySecurity(app: Express) {
   const allowedOrigins = env.CORS_ORIGIN.split(",")
